@@ -1,4 +1,5 @@
 import myAxios from "../request.ts";
+import {reactive} from "vue";
 
 /**
  * 添加图表
@@ -25,5 +26,22 @@ export const listMyChart = async (params : any) => {
         url: "/api/chart/my/list/page",
         method: 'POST',
         data: params,
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+}
+
+/**
+ * 删除图表
+ * @param id
+ */
+export const deleteChart = async (id: number) => {
+    const params=reactive({id:0})
+    params.id = id;
+    return myAxios.request({
+        url: "/api/chart/delete/",
+        method: 'POST',
+        data: params
     });
 }
